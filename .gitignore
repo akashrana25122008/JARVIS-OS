@@ -1,0 +1,29 @@
+# Virtual Environment
+.venv/
+
+# Environment Variables
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Audio Files
+jarvis_voice.mp3
+test.mp3
+
+# VS Code
+.vscode/
+
+# Logs
+logs/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Test Files
+test_*.py
+edge_test.py
+thread_demo.py
