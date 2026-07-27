@@ -3,6 +3,7 @@ import webbrowser
 from commands.apps import execute_app_command
 from commands.browser import execute_browser_command
 from memory_parser import MemoryParser
+from commands.browser_navigation import execute_browser_navigation
 
 from ai import ask_ai
 from responses import (
@@ -103,6 +104,16 @@ class CommandManager:
             return
 
         text = text.lower()
+
+        # Check Browser Navigation
+
+        response = execute_browser_navigation(text)
+
+        if response:
+
+            self.respond(response)
+
+            return
 
         # -------------------------
         # Local Commands
