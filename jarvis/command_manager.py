@@ -2,6 +2,7 @@ import webbrowser
 
 from commands.apps import execute_app_command
 from commands.browser import execute_browser_command
+from memory_parser import MemoryParser
 
 from ai import ask_ai
 from responses import (
@@ -107,6 +108,39 @@ class CommandManager:
         # Local Commands
         # ------------------------
 
+                # Recall
+
+        key = MemoryParser.parse_recall(text)
+
+        if key:
+
+            value = self.context.memory.recall(key)
+
+            if value:
+
+                self.respond(f"Your {key} is {value}.")
+
+            else:
+
+                self.respond(f"I don't remember your {key}.")
+
+            return
+
+        # -------------------------
+        # Memory Commands
+        # -------------------------
+
+        memory = MemoryParser.parse_remember(text)
+
+        if memory:
+
+            key, value = memory
+
+            self.context.memory.remember(key, value)
+
+            self.respond(f"Okay, I'll remember your {key}.")
+
+            return
         # -------------------------
         # AI Fallback
         # -------------------------
